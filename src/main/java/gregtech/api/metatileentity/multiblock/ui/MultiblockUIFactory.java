@@ -58,6 +58,7 @@ public class MultiblockUIFactory {
     private boolean disableDisplay = false;
     private boolean disableIndicator = false;
     private boolean disableButtons = false;
+    private boolean disablePlayerInv = false;
 
     public MultiblockUIFactory(@NotNull MultiblockWithDisplayBase mte) {
         this.mte = mte;
@@ -196,6 +197,11 @@ public class MultiblockUIFactory {
 
     public MultiblockUIFactory disableButtons() {
         this.disableButtons = true;
+        return this;
+    }
+
+    public MultiblockUIFactory disablePlayerInv() {
+        this.disablePlayerInv = true;
         return this;
     }
 
