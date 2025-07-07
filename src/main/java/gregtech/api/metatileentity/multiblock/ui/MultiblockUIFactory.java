@@ -253,21 +253,30 @@ public class MultiblockUIFactory {
             this.screenFunction.addWidgets(panel, panelSyncManager);
         }
 
-        var playerInv = SlotGroupWidget.playerInventory(0);
-        if (disableButtons) {
-            playerInv.alignX(0.5f);
+        if (!disablePlayerInv) {
+            var playerInv = SlotGroupWidget.playerInventory(0);
+            if (disableButtons) {
+                playerInv.alignX(0.5f);
+            } else {
+                playerInv.left(4);
+            }
+
+            return panel.child(Flow.row()
+                    .debugName("bottom_row")
+                    .bottom(7)
+                    .coverChildrenHeight()
+                    .margin(4, 0)
+                    .crossAxisAlignment(Alignment.CrossAxis.CENTER)
+                    .child(playerInv)
+                    .childIf(!disableButtons, () -> createButtons(panel, panelSyncManager, guiData)));
         } else {
-            playerInv.left(4);
+            return panel.child(Flow.row()
+                    .debugName("bottom_row")
+                    .size(0, 0)
+                    .bottom(0)
+                    .left(0));
         }
 
-        return panel.child(Flow.row()
-                .debugName("bottom_row")
-                .bottom(7)
-                .coverChildrenHeight()
-                .margin(4, 0)
-                .crossAxisAlignment(Alignment.CrossAxis.CENTER)
-                .child(playerInv)
-                .childIf(!disableButtons, () -> createButtons(panel, panelSyncManager, guiData)));
     }
 
     private static int calculateRows(int count) {
