@@ -276,7 +276,6 @@ public class MultiblockUIFactory {
                     .bottom(0)
                     .left(0));
         }
-
     }
 
     private static int calculateRows(int count) {
